@@ -1,1 +1,112 @@
-This is a Hello World Application
+/*This is a my first github Application*/
+
+
+package AlgorithmProjectFinal;
+
+/* Name:- G.G.K. Deshapriya
+ * Index No:- 100092G
+ */
+/* Link Class
+ */
+
+
+public class Link {    //implementing link class
+    private String keyword;   //declaretion of class variable
+    private int pageNumber;   
+    Link next;
+    public Link(int pageNumber,String keyword){  //create link class
+        this.pageNumber=pageNumber;
+        this.keyword=keyword;
+        next=null;
+    }
+    public String getKeyword(){  //get keyword
+        return keyword;
+    }
+    public int getPageNumber(){  //get page number
+        return pageNumber;
+    }
+    public void showLink(){    //method to show link
+        System.out.println("page number: "+pageNumber+" key word: "+keyword);
+    }
+    public void showPage(){  //method to show only page number
+        System.out.print(pageNumber+" ");
+    }
+    public void showKeywords(){  //method to show only key words
+        System.out.print(keyword+" ");
+    }
+}
+
+ */
+/* Link List Class
+ */
+
+public class LinkList {   //implementing linked list
+    private Link first;    //reference to first link
+    public LinkList(){  //create empty linked list
+        first=null;
+    }
+    public void insertPageSort(Link newLink){     //insert in sorted list by integer value
+        int page=newLink.getPageNumber();
+        Link previous=null;
+        Link current=first;
+        while(current!=null && page>current.getPageNumber()){  //check whether current link page number greater than new link page
+            previous=current;
+            current=current.next;
+            
+        }
+        
+        if(previous==null)
+            first=newLink;
+        else
+            previous.next=newLink;
+        newLink.next=current;
+    }
+    public void insertKeywordSort(Link newLink){     //insert in sorted list by keyword
+        String keyword=newLink.getKeyword();
+        Link previous=null;
+        Link current=first;
+        while(current!=null&&keyword.compareToIgnoreCase(current.getKeyword())>0){  //check wether key word is equal
+            previous=current;
+            current=current.next;
+        }
+        if(previous==null)
+            first=newLink;
+        else
+            previous.next=newLink;
+        newLink.next=current;
+    }
+    public Link findPage(String key){    //find page which keywoard same as key
+        Link current=first;       
+        while(current!=null&&!key.equalsIgnoreCase(current.getKeyword())){
+            current=current.next;
+        }  
+        return current;
+    }
+    public Link getFirstLink(){    //return first link of the link list
+        return first;
+    }
+    public void showList(){      //display the list
+        Link current=first;
+        while(current!=null){
+            current.showLink();
+            current=current.next;
+        }
+        System.out.println();
+    }
+    public void showPageNum(){   //method to display page numbers in list
+        Link current=first;
+        while(current!=null){
+            current.showPage();
+            current=current.next;
+        }
+        System.out.println();
+    }
+    public void showkeywords(){   //method to display keywords in list
+        Link current=first;
+        while(current!=null){
+            current.showKeywords();
+            current=current.next;
+        }
+        System.out.println();
+    }
+}
